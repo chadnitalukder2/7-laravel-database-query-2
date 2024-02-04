@@ -116,11 +116,21 @@ Route::get('/', function () {
 
    //dump($result);
 /*================================whereBetween,whereNotIn=======================================================================*/
-   // $result = DB::table('rooms')->whereBetween('room_size', [1,3])->get();
+     // $result = DB::table('rooms')->whereBetween('room_size', [1,3])->get();
 
-   $result = DB::table('rooms')->whereNotIn('room_size', [1, 2, 3])->get();
-    dump($result);
-/*====================================where and first================================================================================*/
+    // $result = DB::table('rooms')->whereNotIn('id', [1, 2, 3])->get();
+   
+  /* $result = DB::table('users')
+            ->whereExists(function($query){
+                $query->select('id')
+                    ->from('reservations')
+                    ->whereRaw('reservations.user_id = users.id')
+                    ->where('check_in', '=', '2024-02-04')
+                    ->limit(1);
+            })
+            ->get();*/
+    //dump($result);
+/*==================================== ================================================================================*/
 
 /*====================================where and first================================================================================*/
 

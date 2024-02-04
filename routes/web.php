@@ -115,8 +115,10 @@ Route::get('/', function () {
     ->get();*/
 
    //dump($result);
-/*================================whereBetween====================================================================================*/
-    $result = DB::table('rooms')->whereBetween('room_size', [1,3])->get();
+/*================================whereBetween,whereNotIn=======================================================================*/
+   // $result = DB::table('rooms')->whereBetween('room_size', [1,3])->get();
+
+   $result = DB::table('rooms')->whereNotIn('room_size', [1, 2, 3])->get();
     dump($result);
 /*====================================where and first================================================================================*/
 

@@ -207,13 +207,20 @@ Route::get('/', function () {
 
             // dump($result);
 /*====================================when================================================================================*/
-        $room_id = 1;
-
+       /* $room_id = 1;
         $result = DB::table('reservations')
                 ->when($room_id, function($query, $room_id){
                     return $query->where('room_id', $room_id);
                 })
+                ->get();*/
+
+        $sortBy = 'room_number';
+        $result = DB::table('rooms')
+                ->when($sortBy, function($query, $sortBy){
+                    return $query->orderBy($sortBy);
+                })
                 ->get();
+
 
         dump($result);
 /*====================================where and first================================================================================*/

@@ -214,15 +214,17 @@ Route::get('/', function () {
                 })
                 ->get();*/
 
-        $sortBy = 'room_number';
+        /*$sortBy = 'room_number';
         $result = DB::table('rooms')
                 ->when($sortBy, function($query, $sortBy){
                     return $query->orderBy($sortBy);
+                }, function ($query){
+                    return $query->orderBy('price');
                 })
-                ->get();
+                ->get();*/
 
 
-        dump($result);
+        //dump($result);
 /*====================================where and first================================================================================*/
 
 /*====================================where and first================================================================================*/

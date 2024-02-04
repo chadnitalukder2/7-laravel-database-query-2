@@ -1,6 +1,5 @@
 <?php
 
-use App\Reservation;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,7 +14,7 @@ class DatabaseSeeder extends Seeder
          $this->call(UserSeeder::class);
          $this->call(CommentSeeder::class);
          $this->call(RoomSeeder::class);
-         $this->call(Reservation::class);
+         $this->call(ReservationSeeder::class);
     }
 }
 

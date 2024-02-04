@@ -138,10 +138,17 @@ Route::get('/', function () {
 
         dump($result);*/
 /*====================================paginate================================================================================*/
-            $result = DB::table('comments')->paginate(3);
-            dump($result);
+            /*$result = DB::table('comments')->paginate(3);
+            dump($result);*/
 
-/*====================================where and first================================================================================*/
+/*====================================statement================================================================================*/
+        //$result = DB::statement('ALTER TABLE comments ADD FULLTEXT fulltext_index(content)');
+       
+      /* $result = DB::table('comments')
+                 ->whereRaw("MATCH(content) AGAINST(? IN BOOLEAN MODE )", ['officiis '])
+                 ->get();
+            //third baket er bitorer word er sate mil reke data show kore.
+        dump($result);*/
 
 /*====================================where and first================================================================================*/
 

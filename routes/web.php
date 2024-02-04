@@ -169,14 +169,19 @@ Route::get('/', function () {
                 ->orderByRaw('updated_at - created_at DESC ')
                 ->get();*/
 
-        $result = DB::table('users')
+        /*$result = DB::table('users')
                 ->selectRaw('LENGTH(name) as name_length, name' )
                 ->orderByRaw('LENGTH(name) DESC')
-                ->get();
+                ->get();*/
 
 
-        dump($result);
-/*====================================where and first================================================================================*/
+        //dump($result);
+/*====================================Latest first================================================================================*/
+           /* $result = DB::table('users')
+                ->latest()
+                ->first();
+            dump($result);*/
+
 
 /*====================================where and first================================================================================*/
 

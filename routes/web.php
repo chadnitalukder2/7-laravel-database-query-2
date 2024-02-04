@@ -144,11 +144,17 @@ Route::get('/', function () {
 /*====================================statement================================================================================*/
         //$result = DB::statement('ALTER TABLE comments ADD FULLTEXT fulltext_index(content)');
        
-      /* $result = DB::table('comments')
-                 ->whereRaw("MATCH(content) AGAINST(? IN BOOLEAN MODE )", ['officiis '])
+        $result = DB::table('comments')
+                ->whereRaw("MATCH(content) AGAINST(? IN BOOLEAN MODE )", ['Voluptatem  '])
+                //->whereRaw("MATCH(content) AGAINST(? IN BOOLEAN MODE )", [' +repllendus -pariatur '])
                  ->get();
             //third baket er bitorer word er sate mil reke data show kore.
-        dump($result);*/
+       
+        /*$result = DB::table('comments')
+                  ->where("content", 'like', '%officiis%')
+                  ->get();*/
+
+            dump($result);
 
 /*====================================where and first================================================================================*/
 

@@ -226,15 +226,25 @@ Route::get('/', function () {
 
         //dump($result);
 /*==================================== Chunk()================================================================================*/
-        $result = DB::table('comments')
+        /*$result = DB::table('comments')
                 ->orderBy('id')
                 ->chunk(2, function($comments){
                     foreach ($comments as $comment)
                     {
                         if($comment->id == 5) return false;
                     }
-                });
+                });*/
 
+        $result = DB::table('comments')
+                ->orderBy('id')
+                ->chunk(5, function($comments){
+                    foreach ($comments as $comment)
+                    {
+                        DB::table('comments')
+                        ->where('id', $comment->id)
+                        ->update(['rating' => null]);
+                    }
+                });
         dump($result);
 
 /*====================================where and first================================================================================*/

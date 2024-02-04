@@ -144,20 +144,38 @@ Route::get('/', function () {
 /*====================================statement================================================================================*/
         //$result = DB::statement('ALTER TABLE comments ADD FULLTEXT fulltext_index(content)');
        
-        $result = DB::table('comments')
+        /*$result = DB::table('comments')
                 ->whereRaw("MATCH(content) AGAINST(? IN BOOLEAN MODE )", ['Voluptatem  '])
                 //->whereRaw("MATCH(content) AGAINST(? IN BOOLEAN MODE )", [' +repllendus -pariatur '])
-                 ->get();
+                 ->get();*/
             //third baket er bitorer word er sate mil reke data show kore.
        
         /*$result = DB::table('comments')
                   ->where("content", 'like', '%officiis%')
                   ->get();*/
 
-            dump($result);
+        //dump($result);
 
-/*====================================where and first================================================================================*/
+/*====================================join================================================================================*/
+               
+       /* $result = DB::table('comments')
+                   //->select(DB::raw('count(user_id) as number_of_comments, users.name'))
+                 ->selectRaw('count(user_id) as number_of_comments, users.name')
+                 ->join('users', 'users.id', '=', 'comments.user_id')
+                 ->groupBy('user_id')
+                 ->get();*/
 
+       /* $result = DB::table('comments')
+                ->orderByRaw('updated_at - created_at DESC ')
+                ->get();*/
+
+        $result = DB::table('users')
+                ->selectRaw('LENGTH(name) as name_length, name' )
+                ->orderByRaw('LENGTH(name) DESC')
+                ->get();
+
+
+        dump($result);
 /*====================================where and first================================================================================*/
 
 /*====================================where and first================================================================================*/

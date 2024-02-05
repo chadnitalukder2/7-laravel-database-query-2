@@ -256,7 +256,7 @@ Route::get('/', function () {
                 ->where('users.id', '>', 1)
                 ->get();*/
 
-        $result = DB::table('reservations')
+        /*$result = DB::table('reservations')
                 ->join('rooms', function($join){
                     $join->on('reservations.room_id', '=', 'room_id')
                     ->where('rooms.id', '>' , 3);
@@ -265,6 +265,26 @@ Route::get('/', function () {
                     $join->on('reservations.user_id', '=', 'user_id')
                     ->where('users.id', '>', 1);
                 })
+                ->get();*/
+
+        /*$rooms = DB::table('rooms')
+                ->where('id', '>', 3);
+        $users = DB::table('users')
+                ->where('id', '>', 1);
+        $result = DB::table('reservations')
+                ->joinSub($rooms, 'rooms', function($join){
+                    $join->on('reservations.room_id', '=', 'room_id');
+                })
+                ->joinSub($users, 'users', function($join){
+                    $join->on('reservations.user_id', '=', 'user_id');
+                })
+                ->get();*/
+
+        $result = DB::table('rooms')
+                ->leftJoin('reservations', 'rooms.id', '=', 'reservations.room_id')
+                ->selectRaw('room_size, price, count(reservations.id) as reservations_count')
+                ->groupBy('room_size', 'price')
+                ->orderByRaw('count(reservations.id) DESC')
                 ->get();
 
         dump($result);

@@ -287,7 +287,7 @@ Route::get('/', function () {
                 ->orderByRaw('count(reservations.id) DESC')
                 ->get();*/
 
-        $result = DB::table('rooms')
+        /*$result = DB::table('rooms')
                 ->crossJoin('cities')
                 ->leftJoin('reservations', function($join){
                     $join->on('rooms.id', '=', 'reservations.room_id')
@@ -296,16 +296,81 @@ Route::get('/', function () {
                 ->selectRaw('count(reservations.id) as reservations_count, room_size, cities.name')
                 ->groupBy('room_size', 'cities.name')
                 ->orderByRaw('rooms.room_size DESC')
+                ->get();*/
+
+
+        //dump($result);
+/*====================================Unions==========================================================================*/
+    //order_id | client_id | order_date | order_amount 
+    //refund_id | client_id | refund_date | refund_amount     
+
+            /*$users = DB::table('users')
+                    ->select('name');
+            $result = DB::table('cities')
+                    ->select('name')
+                    ->union($users)
+                    ->get();*/
+
+            /*$comments = DB::table('comments')
+                        ->select('rating as rating_of_room_id', 'id', DB::raw('"comments" as type_of_activity'))
+                        ->where('user_id', 2);
+
+            $result = DB::table('reservations')
+                    ->select('room_id as rating_of_room_id', 'id', DB::raw('"reservations" as type_of_activity'))
+                    ->union($comments)
+                    ->where('user_id', 2)
+                    ->get();*/
+
+                        
+
+            //dump($result);
+/*====================================Insert================================================================================*/
+            /*DB::table('rooms')->insert([
+                [
+                    'room_number' => 1, 
+                    'room_size'  => 1,
+                    'price'  => 1,
+                    'description' => 'new description 1'
+                ],
+                [
+                    'room_number' => 2, 
+                    'room_size'  => 2,
+                    'price'  => 2,
+                    'description' => 'new description 2'
+                ]
+                ]);
+
+                $result = DB::table('rooms')
+                ->get();*/
+
+            /*$id = DB::table('rooms')->insertGetId(
+                [
+                    'room_number' => 3, 
+                    'room_size'  => 3,
+                    'price'  => 3,
+                    'description' => 'new description 3'
+                ]
+                );
+
+                dump($id);*/
+
+/*======================================Update=============================================================================================*/
+        /*$affected = DB::table('rooms')
+                ->where('id', 1)
+                ->update(['price' => 222]);*/
+
+        /*$affected = DB::table('users')
+                ->where('id', 1)
+                ->update(['meta->settings->site_language' => 'es']);*/
+
+        //$affected = DB::table('rooms')->increment('price', 20);
+
+        $affected = DB::table('rooms')->decrement('price', 10, ['description' => 'new description']);
+
+        $result = DB::table('rooms')
                 ->get();
 
-
-        dump($result);
-/*====================================where and first==========================================================================*/
-
-/*====================================where and first================================================================================*/
-
-/*===================================================================================================================================*/
-
+        dump($affected, $result);
 /*===================================================================================================================================*/
 
 /*===================================================================================================================================*/

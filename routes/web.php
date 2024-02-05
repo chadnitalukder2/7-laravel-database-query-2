@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    
+
 /*=========================================================================================================================*/
     /* $user = DB::select('select * from users where id = ?', [2]);
      dump("mysql : ", $user);*/
@@ -248,8 +248,26 @@ Route::get('/', function () {
                 });*/
         //dump($result);
 
-/*====================================where and first=========================================================================*/
+/*========================================join===============================================================================*/
+        /*$result = DB::table('reservations')
+                ->join('rooms', 'reservations.room_id', '=', 'room_id')
+                ->join('users', 'reservations.user_id', '=', 'user_id')
+                ->where('rooms.id', '>' , 3)
+                ->where('users.id', '>', 1)
+                ->get();*/
 
+        $result = DB::table('reservations')
+                ->join('rooms', function($join){
+                    $join->on('reservations.room_id', '=', 'room_id')
+                    ->where('rooms.id', '>' , 3);
+                })
+                ->join('users', function($join){
+                    $join->on('reservations.user_id', '=', 'user_id')
+                    ->where('users.id', '>', 1);
+                })
+                ->get();
+
+        dump($result);
 /*====================================where and first==========================================================================*/
 
 /*====================================where and first================================================================================*/

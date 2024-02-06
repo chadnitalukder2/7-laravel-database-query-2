@@ -1,5 +1,7 @@
 <?php
 
+use App\Comment;
+use App\Reservation;
 use App\Room;
 use App\User;
 use Illuminate\Support\Facades\DB;
@@ -386,8 +388,30 @@ Route::get('/', function () {
 
 
 
-/*=================================elequent=Model dore kaj korte hoy==================================================*/
-            $result = Room::where('room_size' , 3)->get();
+/*==================addSelect===============elequent=Model dore kaj korte hoy=========================================*/
+           // $result = Room::where('room_size' , 3)->get();
+
+           /*$result = User::select('name', 'email')
+                    ->addSelect(['worst_rating' => Comment::select('rating')
+                    ->whereColumn('user_id', 'users.id')
+                    ->orderBy('rating', 'asc')
+                    ->limit(1)
+                ])
+                ->get()->toArray();*/
+
+            /*$result = User::orderByDesc(
+                        Reservation::select('check_in')
+                            ->whereColumn('user_id', 'users.id')
+                            ->orderBy('check_in', 'desc')
+                            ->limit(1)
+                    )->select('id', 'name')->get()->toArray();*/
+
+            $result = Reservation::chunk(2, function($reservation){
+                foreach($reservation as $reservation)
+                {
+                    echo $reservation->id;
+                }
+            });
 
             dump($result);
 /*====================================================================================================================*/

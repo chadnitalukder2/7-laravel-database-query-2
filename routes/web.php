@@ -414,15 +414,20 @@ Route::get('/', function () {
             });*/
 
             //dump($result);
-/*====================find,first================================================================================================*/
+/*====================find,first======withoutGlobalScope==========================================================================================*/
            // $result = User::find(1);
             //$result = User::where('email', 'like', '%@%')->first();
 
-            $result = User::where('email', 'like', '%@email12.com')->firstOr(function(){
-                User::where('id', 1)->update(['email' => 'email@email.com']);
-            });
+            // $result = User::where('email', 'like', '%@email12.com')->firstOr(function(){
+            //     User::where('id', 1)->update(['email' => 'email@email.com']);
+            // });
 
-            dump($result);
+
+            //$result = Comment::all();
+           // $result = Comment::withoutGlobalScope('rating')->get();
+           $result = Comment::rating(1)->get();
+
+             dump($result);
 /*====================================================================================================================*/
 
 /*====================================================================================================================*/

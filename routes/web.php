@@ -72,9 +72,9 @@ Route::get('/', function () {
     //dump(factory(App\Comment::class, 4)->make());
     //dump(factory(App\Comment::class, 4)->create());
 /*====================================pluck================================================================================*/
-    /*$users = DB::table('users')->get();
-    $users = DB::table('users')->pluck('email'); //its show only email 
-    dump($users);*/
+    // $users = DB::table('users')->get();
+    // $users = DB::table('users')->pluck('email'); //its show only email 
+    // dump($users);
 /*====================================where and first======================================================================*/
     //first means show only one data similar to condition
     /*$user = DB::table('users')->where('name', 'Alejandrin Kohler')->first();
@@ -92,7 +92,7 @@ Route::get('/', function () {
     // dump($comments);
 
 /*====================================distinct=============================================================================*/
-    //  $comments = DB::table('comments')->select('user_id')->distinct()->get();
+    // $comments = DB::table('comments')->select('user_id')->distinct()->get();
     // dump($comments);
 
 /*====================================count================================================================================*/
@@ -103,7 +103,7 @@ Route::get('/', function () {
     // $comments = DB::table('comments')->max('user_id');
     // dump($comments);
 /*====================================exists, doesntExist==================================================================*/
-    // $result = DB::table('comments')->where('content', 'content')->exists();
+    // $result = DB::table('comments')->where('content', 'content')->doesntExist();
     // dump($result);
 /*==========================================where=====Room=================================================================*/
    // $result = DB::table('rooms')->where('price', '<', 200)->get();
@@ -135,12 +135,12 @@ Route::get('/', function () {
             ->get();*/
     //dump($result);
 /*====================================whereJsonContains ===================================================================*/
-        /*$result = DB::table('users')
-                  //->whereJsonContains('meta->skills', 'Laravel')  
-                  ->where('meta->settings->site_language', 'en')
-                  ->get();
+        // $result = DB::table('users')
+        //           ->whereJsonContains('meta->skills', 'Laravel')  
+        //           ->where('meta->settings->site_language', 'en')
+        //           ->get();
 
-        dump($result);*/
+        // dump($result);
 /*====================================paginate=============================================================================*/
             /*$result = DB::table('comments')->paginate(3);
             dump($result);*/
@@ -230,14 +230,14 @@ Route::get('/', function () {
 
         //dump($result);
 /*==================================== Chunk()===============================================================================*/
-        /*$result = DB::table('comments')
-                ->orderBy('id')
-                ->chunk(2, function($comments){
-                    foreach ($comments as $comment)
-                    {
-                        if($comment->id == 5) return false;
-                    }
-                });*/
+        // $result = DB::table('comments')
+        //         ->orderBy('id')
+        //         ->chunk(2, function($comments){
+        //             foreach ($comments as $comment)
+        //             {
+        //                 echo $comment->content ."<br>";
+        //             }
+        //         });
 
        /* $result = DB::table('comments')
                 ->orderBy('id')
@@ -249,7 +249,7 @@ Route::get('/', function () {
                         ->update(['rating' => null]);
                     }
                 });*/
-        //dump($result);
+        // dump($result);
 
 /*========================================join===============================================================================*/
         /*$result = DB::table('reservations')
@@ -378,13 +378,13 @@ Route::get('/', function () {
                // DB::table('rooms')->where('id', '>', 10)->delete();
 
 /*========================================lockForUpdate===============================================================*/
-            /*$result = DB::table('rooms')
-                    ->where('room_size', 2)
-                    ->lockForUpdate()
-                    ->get()
-                    ->dd();
+            // $result = DB::table('rooms')
+            //         ->where('room_size', 2)
+            //         ->lockForUpdate()
+            //         ->get()
+            //         ->dd();
 
-            dump($result);*/
+            // dump($result);
 
 
 
@@ -418,14 +418,14 @@ Route::get('/', function () {
            // $result = User::find(1);
             //$result = User::where('email', 'like', '%@%')->first();
 
-            // $result = User::where('email', 'like', '%@email12.com')->firstOr(function(){
-            //     User::where('id', 1)->update(['email' => 'email@email.com']);
-            // });
+            $result = User::where('email', 'like', '%@email12.com')->firstOr(function(){
+                User::where('id', 1)->update(['email' => 'email@email.com']);
+            });
 
 
             //$result = Comment::all();
            // $result = Comment::withoutGlobalScope('rating')->get();
-           $result = Comment::rating(1)->get();
+        //    $result = Comment::rating(1)->get();
 
              dump($result);
 /*====================================================================================================================*/

@@ -418,18 +418,34 @@ Route::get('/', function () {
            // $result = User::find(1);
             //$result = User::where('email', 'like', '%@%')->first();
 
-            $result = User::where('email', 'like', '%@email12.com')->firstOr(function(){
-                User::where('id', 1)->update(['email' => 'email@email.com']);
-            });
+            // $result = User::where('email', 'like', '%@email12.com')->firstOr(function(){
+            //     User::where('id', 1)->update(['email' => 'email@email.com']);
+            // });
 
 
             //$result = Comment::all();
-           // $result = Comment::withoutGlobalScope('rating')->get();
-        //    $result = Comment::rating(1)->get();
+            // $result = Comment::withoutGlobalScope('rating')->get();
+            //$result = Comment::rating(1)->get();
 
-             dump($result);
+             //dump($result);
 /*====================================================================================================================*/
+                //$result = Comment::all()->toArray();
+                //$result = Comment::all()->count();
+                //$result = Comment::all()->toJson();
 
+                $comments = Comment::all();
+                $result = $comments->reject(function ($comment) {
+                    return $comment->rating < 3 ;
+                });
+
+                // $result = $comments->map(function ($comment) {
+                //     return $comment->content ;
+                // });
+
+                $result = $comments->diff($result);
+
+
+                dump($result);
 /*====================================================================================================================*/
 
 /*====================================================================================================================*/

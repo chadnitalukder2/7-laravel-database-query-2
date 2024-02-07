@@ -14,8 +14,8 @@ class Comment extends Model
         }); 
     }*/
 
-    public function scopeRating($query, int $value = 4)
-    {
-        return $query->where('rating', '>', $value);
-    }
+    // public function scopeRating($query, int $value = 4)
+    // {
+    //     return $query->where('rating', '>', $value);
+    // }
 }

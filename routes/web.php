@@ -37,11 +37,11 @@ Route::get('/', function () {
    dump( $deleted);*/
 
    //DB::statement('truncate table users');
-/*=========================================================================================================================*/
+/*===================================transaction======================================================================================*/
    //$result = DB::select('select * from users'); //row sql
    // $result = User::all(); //aluquent orm
 
-   //Transaction
+   //Transaction    use to user delete korle 
    /* DB::transaction(function (){
         //try catch block is not necessary as well as DB:: rollBacke()
         try{
@@ -487,13 +487,22 @@ Route::get('/', function () {
             //    $result = Comment::withTrashed()->get();
 
             //$result = Comment::withTrashed()->restore();
-            $result = Comment::where('rating', 1)->forceDelete();
+            // $result = Comment::where('rating', 1)->forceDelete();
 
-                dump($result);
-/*=====================================================================================================================*/
+            //     dump($result);
+/*====================================comment, retrieved,  er query=================================================================================*/
+            // $result = Comment::all();
 
-/*=====================================================================================================================*/
+            // $result = Comment::find(1);
+            // $result->rating = 4;
+            // $result->save();
 
+            // dump($result->rating);
+            // dump($result->who_what);
+/*=============================================user table========================================================================*/
+                $result = User::select([
+                    
+                ])
 /*=====================================================================================================================*/
 
 /*===================================================================================================================================*/

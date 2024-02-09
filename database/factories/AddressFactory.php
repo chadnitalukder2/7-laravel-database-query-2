@@ -9,7 +9,8 @@ $factory->define(Address::class, function (Faker $faker) {
     return [
         'number' => $faker->numberBetween(1, 10),
         'street' => $faker->streetName,
-        'user_id' => $faker->unique()->numberBetween(1, 3),
-          
+        'user_id' => $faker->unique()->numberBetween(1, 100),
+
+         
     ];
 });

@@ -10,6 +10,10 @@ class Comment extends Model
 {
 
     use SoftDeletes;
+     //-------------------------------------------
+    protected $casts = [
+        'rating' => 'float',
+    ];
     //-------------------------------------------
     // protected $fillable = ['rating', 'content', 'user_id'];
     protected $guarded = [];

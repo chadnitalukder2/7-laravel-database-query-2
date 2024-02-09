@@ -499,10 +499,23 @@ Route::get('/', function () {
 
             // dump($result->rating);
             // dump($result->who_what);
-/*=============================================user table========================================================================*/
-                $result = User::select([
-                    
-                ])
+/*=====================================user table=================================================================*/
+                // $result = User::select([
+                //     'users.*',
+                //     'last_commented_at' => Comment::selectRaw('MAX(created_at)')
+                //         ->whereColumn('user_id', 'users.id')
+                // ])->withCasts([
+                //     'last_Commented_at' => 'datetime:Y-m-d' //date and datetime works only for array or json result
+                // ])->get()->toJson();
+
+                // $comment = new Comment; 
+                // $comment->content = 'content';
+                // $comment->user_id = 1;
+                // $comment->rating = 5;
+                // $comment->save();
+                // $result = Comment::find(1);
+
+                // dump($result->rating);
 /*=====================================================================================================================*/
 
 /*===================================================================================================================================*/

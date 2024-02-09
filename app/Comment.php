@@ -55,4 +55,10 @@ class Comment extends Model
         $this->attributes['rating'] = $value + 1; 
     }
 
+    //===================relationship==================
+    public function user()
+    {
+      return $this->belongsTo('App\User', 'user_id', 'id');
+    }
+
 }

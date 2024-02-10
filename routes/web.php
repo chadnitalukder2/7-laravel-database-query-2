@@ -3,6 +3,7 @@
 use App\Address;
 use App\City;
 use App\Comment;
+use App\Company;
 use App\Reservation;
 use App\Room;
 use App\User;
@@ -538,10 +539,12 @@ Route::get('/', function () {
 
                     // dump($result->cities);
 /*=========================================hasOneThrough==========================================================================================*/
-                    $result = Comment::find(6);
-                    dump($result->country->name); 
-/*===================================================================================================================================*/
+                    // $result = Comment::find(6);
+                    // dump($result->country->name); 
+/*======================================hasManyThrough=============================================================================================*/
+            $result = Company::find(2);
 
+            dump($result->reservations); 
 
 
 
